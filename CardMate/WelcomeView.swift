@@ -4,6 +4,7 @@
 //
 //  Created by Jordan Vaglivelo on 12/6/20.
 //
+//  Credits : https://medium.com/better-programming/creating-an-apple-like-splash-screen-in-swiftui-fdeb36b47e81
 
 import SwiftUI
 
