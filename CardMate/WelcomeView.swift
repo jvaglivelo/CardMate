@@ -7,6 +7,16 @@
 
 import SwiftUI
 
+let defaults = UserDefaults.standard
+
+func tapContinue() {
+    if let window = UIApplication.shared.windows.first {
+        window.rootViewController = UIHostingController(rootView: MainView())
+        window.makeKeyAndVisible()
+    }
+}
+
+
 struct WelcomeView: View {
     var body: some View {
         VStack(alignment: .center, spacing: nil, content: {
@@ -16,9 +26,10 @@ struct WelcomeView: View {
             Spacer(minLength: 30)
             
             Button(action: {
-                let generator = UINotificationFeedbackGenerator()
-                generator.notificationOccurred(.success)
-            }) {
+                tapContinue()
+                defaults.setValue(false, forKey: "newUser")
+            })
+            {
                 Text("Continue")
                     .foregroundColor(.white)
                     .font(.headline)
@@ -31,7 +42,14 @@ struct WelcomeView: View {
             }
             .padding(.horizontal)
 
-        })
+        }).onAppear(){
+            print(defaults.value(forKey: "newUser"))
+            if (defaults.value(forKey: "newUser") == nil){
+                defaults.setValue(true, forKey: "newUser")
+            }else if (defaults.bool(forKey: "newUser") == false){
+                tapContinue()
+            }
+        }
     }
 }
 struct WelcomeDetailView: View {
