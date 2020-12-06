@@ -43,7 +43,6 @@ struct WelcomeView: View {
             .padding(.horizontal)
 
         }).onAppear(){
-            print(defaults.value(forKey: "newUser"))
             if (defaults.value(forKey: "newUser") == nil){
                 defaults.setValue(true, forKey: "newUser")
             }else if (defaults.bool(forKey: "newUser") == false){
@@ -53,9 +52,9 @@ struct WelcomeView: View {
     }
 }
 struct WelcomeDetailView: View {
-    var title = "Welcome"
-    var subTitle = "Here"
-    var image = "car"
+    var title = ""
+    var subTitle = ""
+    var image = ""
     
     var body: some View {
         HStack(alignment: .center, spacing: nil, content: {
@@ -84,11 +83,11 @@ struct WelcomeDetailView: View {
 struct WelcomeContainerView: View {
     var body: some View {
         VStack(alignment: .leading) {
-            WelcomeDetailView(title: "Match", subTitle: "Match the gradients by moving the Red, Green and Blue sliders for the left and right colors.", image: "slider.horizontal.below.rectangle")
+            WelcomeDetailView(title: "Study", subTitle: "", image: "slider.horizontal.below.rectangle")
 
-            WelcomeDetailView(title: "Precise", subTitle: "More precision with the steppers to get that 100 score.", image: "minus.slash.plus")
+            WelcomeDetailView(title: "Learn", subTitle: "", image: "minus.slash.plus")
 
-            WelcomeDetailView(title: "Score", subTitle: "A detailed score and comparsion of your gradient and the target gradient.", image: "checkmark.square")
+            WelcomeDetailView(title: "Master", subTitle: "", image: "checkmark.square")
         }
         .padding(.horizontal)
     }
