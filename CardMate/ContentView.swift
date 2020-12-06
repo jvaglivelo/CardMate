@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-private var singleGrid = [GridItem(.flexible())]
+var singleGrid = [GridItem()]
 
 var homeCards = CardSet(cards: [Card(mainText: ["Welcome to CardMate", "The controls are simple"], subText: ["Tap to flip", "Swipe right for the next card"]), Card(mainText: ["You can also swipe left to go back", "You can try it if you want"]), Card(mainText: ["Thats pretty much all the controls", "Enjoy!"], subText: ["You can create card sets below", ""])], title: "Home Set")
 
@@ -35,6 +35,7 @@ struct MainView: View {
                     .fontWeight(.black)
                     .font(.system(size: 28))
                     .foregroundColor(.blue)
+                    .padding()
                 Spacer()
                     .frame(height: UIScreen.main.bounds.height * 0.1)
                 LazyHGrid(rows: singleGrid, alignment: .center) {
@@ -147,8 +148,6 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             MainView()
-            MainView()
-                .previewDevice("iPhone 12 Pro Max")
         }
     }
 }
