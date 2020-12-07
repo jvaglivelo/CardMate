@@ -9,7 +9,48 @@ import SwiftUI
 
 struct SettingsView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            VStack(alignment: .center) {
+                Text("CardMate")
+                    .fontWeight(.black)
+                    .font(.system(size: 28))
+                    .foregroundColor(.purple)
+                    .padding()
+                VStack{
+                    Text("Erase All Sets")
+                        .frame(width: UIScreen.main.bounds.width/2, height: UIScreen.main.bounds.height * 0.05, alignment: .center)
+                    Button(action: {
+                        defaults.setValue(CardSets(sets: [CardSet]()), forKey: "userSets")
+                        print(newSet.cards.count)
+                    }) {
+                        Text("Erase")
+                            .foregroundColor(.white)
+                            .font(.headline)
+                            .padding()
+                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+                            .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
+                            .fill(Color.purple))
+                            .padding(.bottom)
+
+                    }
+                }
+                Spacer()
+                Button(action: {
+                    tapGoBack()
+                }) {
+                    Text("Go Back")
+                        .foregroundColor(.white)
+                        .font(.headline)
+                        .padding()
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+                        .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
+                        .fill(Color.purple))
+                        .padding(.bottom)
+
+                }
+
+            }
+        }
     }
 }
 
