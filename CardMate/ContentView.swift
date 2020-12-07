@@ -4,6 +4,7 @@
 //
 //  Created by Jordan Vaglivelo on 12/6/20.
 //
+//  Credits : https://stackoverflow.com/questions/59109138/how-to-implement-a-left-or-right-draggesture-that-trigger-a-switch-case-in-swi
 
 import SwiftUI
 
@@ -13,7 +14,7 @@ var homeCards = CardSet(cards: [Card(mainText: ["Welcome to CardMate", "The cont
 
 var cardCount = 0
 
-var userSets:CardSets = CardSets(sets: [CardSet]())
+
 
 func detectDirection(value: DragGesture.Value) -> String {
     if value.startLocation.x < value.location.x - 24 {
@@ -24,9 +25,9 @@ func detectDirection(value: DragGesture.Value) -> String {
     return "?"
   }
 
-func tapNewSet() {
+func tapNewSet(set: CardSets) {
     if let window = UIApplication.shared.windows.first {
-        window.rootViewController = UIHostingController(rootView: NewSetView())
+        window.rootViewController = UIHostingController(rootView: NewSetView(passedSets: set))
         window.makeKeyAndVisible()
     }
 }
@@ -34,6 +35,7 @@ func tapNewSet() {
 struct MainView: View {
     @State var mainText = homeCards.cards[cardCount].mainText[homeCards.cards[cardCount].side]
     @State var subText = homeCards.cards[cardCount].subText[homeCards.cards[cardCount].side]
+    @State var userSets:CardSets = CardSets(sets: [CardSet]())
     var body: some View {
         HStack {
             VStack(alignment: .center) {
@@ -100,7 +102,7 @@ struct MainView: View {
                     .frame(height: UIScreen.main.bounds.height * 0.1)
                 HStack {
                     Button(action: {
-                        tapNewSet()
+                        tapNewSet(set: userSets)
                     }) {
                         Text("New Set")
                             .foregroundColor(.white)
@@ -134,17 +136,20 @@ struct MainView: View {
                             ForEach(userSets.sets, id: \.self) { item in
                                 Text(item.title)
                                     .padding()
-                                    .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+                                    .font(.title)
+                                    //.frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                             }
                         }
                     }
-                })
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 3, alignment: .center)
+                }).onAppear(){
+                    if defaults.value(forKey: "userSets") != nil {
+                        userSets = decodeSet(data: defaults.value(forKey: "userSets") as! Data)
+                    }
+                    print(userSets.sets.count)
+                }
             }
             //Spacer()
-        }.onAppear(){
-            if defaults.value(forKey: "userSets") != nil {
-                userSets = decodeSet(data: defaults.value(forKey: "userSets") as! Data)
-            }
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
     }
