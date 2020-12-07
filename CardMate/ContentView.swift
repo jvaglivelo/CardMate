@@ -39,6 +39,13 @@ func tapOpenSet(passSet: CardSet) {
     }
 }
 
+func tapSettings() {
+    if let window = UIApplication.shared.windows.first {
+        window.rootViewController = UIHostingController(rootView: SettingsView())
+        window.makeKeyAndVisible()
+    }
+}
+
 
 struct MainView: View {
     @State var mainText = homeCards.cards[cardCount].mainText[homeCards.cards[cardCount].side]
@@ -119,7 +126,7 @@ struct MainView: View {
 
                     }
                     Button(action: {
-                        // What to perform
+                        tapSettings()
                     }) {
                         Text("Settings")
                             .foregroundColor(.white)
