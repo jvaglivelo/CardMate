@@ -24,6 +24,12 @@ func detectDirection(value: DragGesture.Value) -> String {
     return "?"
   }
 
+func tapNewSet() {
+    if let window = UIApplication.shared.windows.first {
+        window.rootViewController = UIHostingController(rootView: NewSetView())
+        window.makeKeyAndVisible()
+    }
+}
 
 struct MainView: View {
     @State var mainText = homeCards.cards[cardCount].mainText[homeCards.cards[cardCount].side]
@@ -94,7 +100,7 @@ struct MainView: View {
                     .frame(height: UIScreen.main.bounds.height * 0.1)
                 HStack {
                     Button(action: {
-                        // What to perform
+                        tapNewSet()
                     }) {
                         Text("New Set")
                             .foregroundColor(.white)
