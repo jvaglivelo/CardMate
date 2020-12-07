@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4AA5D1F3257EC7A000D69F8F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5D1F2257EC7A000D69F8F /* SettingsView.swift */; };
 		4AA87BEB257D40D500027348 /* CardMateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA87BEA257D40D500027348 /* CardMateApp.swift */; };
 		4AA87BED257D40D500027348 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA87BEC257D40D500027348 /* ContentView.swift */; };
 		4AA87BEF257D40D600027348 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AA87BEE257D40D600027348 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4AA5D1F2257EC7A000D69F8F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		4AA87BE7257D40D500027348 /* CardMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AA87BEA257D40D500027348 /* CardMateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardMateApp.swift; sourceTree = "<group>"; };
 		4AA87BEC257D40D500027348 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				4AA87BFD257D645C00027348 /* Cards.swift */,
 				4AA87BFA257D463300027348 /* WelcomeView.swift */,
 				4AA87C00257D90E400027348 /* NewSetView.swift */,
+				4AA5D1F2257EC7A000D69F8F /* SettingsView.swift */,
 				4AA87BEE257D40D600027348 /* Assets.xcassets */,
 				4AA87BF3257D40D600027348 /* Info.plist */,
 				4AA87BF0257D40D600027348 /* Preview Content */,
@@ -150,6 +153,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AA5D1F3257EC7A000D69F8F /* SettingsView.swift in Sources */,
 				4AA87BED257D40D500027348 /* ContentView.swift in Sources */,
 				4AA87BFB257D463300027348 /* WelcomeView.swift in Sources */,
 				4AA87BEB257D40D500027348 /* CardMateApp.swift in Sources */,
