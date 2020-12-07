@@ -36,49 +36,49 @@ struct OpenSetView: View {
                         mainText = passedCards.cards[cardCount].mainText[passedCards.cards[cardCount].side]
                         subText = passedCards.cards[cardCount].subText[passedCards.cards[cardCount].side]
                     }
-                    .onTapGesture(count: 1){
-                        print("tapped")
-                        if passedCards.cards[cardCount].side == 0 {
-                            passedCards.cards[cardCount].side = 1
-                            mainText = passedCards.cards[cardCount].mainText[passedCards.cards[cardCount].side]
-                            subText = passedCards.cards[cardCount].subText[passedCards.cards[cardCount].side]
-                        }else {
-                            passedCards.cards[cardCount].side = 0
-                            mainText = passedCards.cards[cardCount].mainText[passedCards.cards[cardCount].side]
-                            subText = passedCards.cards[cardCount].subText[passedCards.cards[cardCount].side]
-                        }
-                    }
-                    .gesture(DragGesture()
-                            .onEnded { value in
-                              let direction = detectDirection(value: value)
-                              if direction == "left" {
-                                print("left")
-                                if (cardCount != 0){
-                                    cardCount -= 1
-                                    passedCards.cards[cardCount].side = 0
-                                    mainText = passedCards.cards[cardCount].mainText[passedCards.cards[cardCount].side]
-                                    subText = passedCards.cards[cardCount].subText[passedCards.cards[cardCount].side]
-
-                                }
-
-                              }else if direction == "right" {
-                                print("right")
-                                if (passedCards.cards.count > cardCount+1){
-                                    cardCount += 1
-                                    passedCards.cards[cardCount].side = 0
-                                    mainText = passedCards.cards[cardCount].mainText[passedCards.cards[cardCount].side]
-                                    subText = passedCards.cards[cardCount].subText[passedCards.cards[cardCount].side]
-
-                                }
-                              }
-                            }
-                          )
-
                     .frame(width: UIScreen.main.bounds.size.width / 1.05, height: UIScreen.main.bounds.height/3, alignment: .center)
                     .background(Color(UIColor(red: 0.90, green: 0.90, blue: 0.92, alpha: 1.00)))
                     .padding(10)
                     .cornerRadius(40)
+                }.gesture(DragGesture()
+                    .onEnded { value in
+                    let direction = detectDirection(value: value)
+                    if direction == "left" {
+                        print("left")
+                        if (cardCount != 0){
+                        cardCount -= 1
+                        passedCards.cards[cardCount].side = 0
+                        mainText = passedCards.cards[cardCount].mainText[passedCards.cards[cardCount].side]
+                        subText = passedCards.cards[cardCount].subText[passedCards.cards[cardCount].side]
+                        }
+                    }else if direction == "right" {
+                        print("right")
+                        if (passedCards.cards.count > cardCount+1){
+                            cardCount += 1
+                            passedCards.cards[cardCount].side = 0
+                            mainText = passedCards.cards[cardCount].mainText[passedCards.cards[cardCount].side]
+                            subText = passedCards.cards[cardCount].subText[passedCards.cards[cardCount].side]
+
+                        }
+                    }
+                })
+                .onTapGesture(count: 1){
+                    print("tapped")
+                    if passedCards.cards[cardCount].side == 0 {
+                        passedCards.cards[cardCount].side = 1
+                        mainText = passedCards.cards[cardCount].mainText[passedCards.cards[cardCount].side]
+                        subText = passedCards.cards[cardCount].subText[passedCards.cards[cardCount].side]
+                    }else {
+                        passedCards.cards[cardCount].side = 0
+                        mainText = passedCards.cards[cardCount].mainText[passedCards.cards[cardCount].side]
+                        subText = passedCards.cards[cardCount].subText[passedCards.cards[cardCount].side]
+                    }
                 }
+                
+                Spacer()
+                    .frame(height: UIScreen.main.bounds.height * 0.1)
+                Text(String(cardCount+1) + "/" + String(passedCards.cards.count))
+                
                 LazyVGrid(columns: singleGrid, content: {
                     ScrollView {
                         VStack{
