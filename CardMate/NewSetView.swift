@@ -124,6 +124,8 @@ func saveQuit(pSet: CardSets){
                 window.makeKeyAndVisible()
             }
         }
+    }else{
+        tapGoBack()
     }
 }
 
