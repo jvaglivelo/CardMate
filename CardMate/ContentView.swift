@@ -63,32 +63,22 @@ struct MainView: View {
                             .multilineTextAlignment(.center)
                         Text(subText)
                     }
-                    .onTapGesture(count: 1){
-                        print("tapped")
-                        if homeCards.cards[cardCount].side == 0 {
-                            homeCards.cards[cardCount].side = 1
-                            mainText = homeCards.cards[cardCount].mainText[homeCards.cards[cardCount].side]
-                            subText = homeCards.cards[cardCount].subText[homeCards.cards[cardCount].side]
-                        }else {
-                            homeCards.cards[cardCount].side = 0
-                            mainText = homeCards.cards[cardCount].mainText[homeCards.cards[cardCount].side]
-                            subText = homeCards.cards[cardCount].subText[homeCards.cards[cardCount].side]
-                        }
-                    }
-                    .gesture(DragGesture()
+                    .frame(width: UIScreen.main.bounds.size.width / 1.05, height: UIScreen.main.bounds.height/3, alignment: .center)
+                    .background(Color(UIColor(red: 0.90, green: 0.90, blue: 0.92, alpha: 1.00)))
+                    .padding(10)
+                    .cornerRadius(40)
+                }.gesture(DragGesture()
                             .onEnded { value in
-                              let direction = detectDirection(value: value)
-                              if direction == "left" {
+                            let direction = detectDirection(value: value)
+                            if direction == "left" {
                                 print("left")
                                 if (cardCount != 0){
-                                    cardCount -= 1
-                                    homeCards.cards[cardCount].side = 0
-                                    mainText = homeCards.cards[cardCount].mainText[homeCards.cards[cardCount].side]
-                                    subText = homeCards.cards[cardCount].subText[homeCards.cards[cardCount].side]
-
+                                cardCount -= 1
+                                homeCards.cards[cardCount].side = 0
+                                mainText = homeCards.cards[cardCount].mainText[homeCards.cards[cardCount].side]
+                                subText = homeCards.cards[cardCount].subText[homeCards.cards[cardCount].side]
                                 }
-
-                              }else if direction == "right" {
+                            }else if direction == "right" {
                                 print("right")
                                 if (homeCards.cards.count > cardCount+1){
                                     cardCount += 1
@@ -97,15 +87,21 @@ struct MainView: View {
                                     subText = homeCards.cards[cardCount].subText[homeCards.cards[cardCount].side]
 
                                 }
-                              }
                             }
-                          )
-
-                    .frame(width: UIScreen.main.bounds.size.width / 1.05, height: UIScreen.main.bounds.height/3, alignment: .center)
-                    .background(Color(UIColor(red: 0.90, green: 0.90, blue: 0.92, alpha: 1.00)))
-                    .padding(10)
-                    .cornerRadius(40)
+                        })
+                .onTapGesture(count: 1){
+                    print("tapped")
+                    if homeCards.cards[cardCount].side == 0 {
+                        homeCards.cards[cardCount].side = 1
+                        mainText = homeCards.cards[cardCount].mainText[homeCards.cards[cardCount].side]
+                        subText = homeCards.cards[cardCount].subText[homeCards.cards[cardCount].side]
+                    }else {
+                        homeCards.cards[cardCount].side = 0
+                        mainText = homeCards.cards[cardCount].mainText[homeCards.cards[cardCount].side]
+                        subText = homeCards.cards[cardCount].subText[homeCards.cards[cardCount].side]
+                    }
                 }
+
                 Spacer()
                     .frame(height: UIScreen.main.bounds.height * 0.1)
                 HStack {
