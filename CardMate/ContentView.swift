@@ -12,7 +12,7 @@ var singleGrid = [GridItem()]
 
 var homeCards = CardSet(cards: [Card(mainText: ["Welcome to CardMate", "The controls are simple"], subText: ["Tap to flip", "Swipe right for the next card"]), Card(mainText: ["You can also swipe left to go back", "You can try it if you want"]), Card(mainText: ["Thats pretty much all the controls", "Enjoy!"], subText: ["You can create card sets below", ""])], title: "Home Set")
 
-var cardCount = 0
+private var cardCount = 0
 
 
 
@@ -32,6 +32,14 @@ func tapNewSet(set: CardSets) {
     }
 }
 
+func tapOpenSet(passSet: CardSet) {
+    if let window = UIApplication.shared.windows.first {
+        window.rootViewController = UIHostingController(rootView: OpenSetView(passedCards: passSet))
+        window.makeKeyAndVisible()
+    }
+}
+
+
 struct MainView: View {
     @State var mainText = homeCards.cards[cardCount].mainText[homeCards.cards[cardCount].side]
     @State var subText = homeCards.cards[cardCount].subText[homeCards.cards[cardCount].side]
@@ -42,7 +50,7 @@ struct MainView: View {
                 Text("CardMate")
                     .fontWeight(.black)
                     .font(.system(size: 28))
-                    .foregroundColor(.blue)
+                    .foregroundColor(.purple)
                     .padding()
                 Spacer()
                     .frame(height: UIScreen.main.bounds.height * 0.1)
@@ -110,7 +118,7 @@ struct MainView: View {
                             .padding()
                             .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                             .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
-                            .fill(Color.blue))
+                            .fill(Color.purple))
                             .padding(.bottom)
 
                     }
@@ -123,7 +131,7 @@ struct MainView: View {
                             .padding()
                             .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                             .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
-                            .fill(Color.blue))
+                            .fill(Color.purple))
                             .padding(.bottom)
 
                     }
@@ -134,10 +142,15 @@ struct MainView: View {
                     ScrollView {
                         VStack{
                             ForEach(userSets.sets, id: \.self) { item in
-                                Text(item.title)
-                                    .padding()
-                                    .font(.title)
-                                    //.frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+                                Button(action: {
+                                    tapOpenSet(passSet: item)
+                                }) {
+                                    Text(item.title)
+                                        .padding()
+                                        .font(.title)
+                                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+
+                                }
                             }
                         }
                     }
