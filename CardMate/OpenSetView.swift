@@ -93,7 +93,7 @@ struct OpenSetView: View {
 
                     }
                     Button(action: {
-                        // What to perform
+                        tapGoBack()
                     }) {
                         Text("Go Back")
                             .foregroundColor(.white)
@@ -140,9 +140,16 @@ struct CardListField: View {
     }
 }
 
+func tapGoBack() {
+    if let window = UIApplication.shared.windows.first {
+        window.rootViewController = UIHostingController(rootView: MainView())
+        window.makeKeyAndVisible()
+    }
+}
+
 
 struct OpenSetView_Previews: PreviewProvider {
     static var previews: some View {
-        OpenSetView(passedCards: CardSet(cards: [Card](), title: ""))
+        OpenSetView(passedCards: CardSet(cards: [Card(mainText: ["Error", "Error"])], title: "ERROR"))
     }
 }
