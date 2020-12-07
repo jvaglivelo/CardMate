@@ -10,7 +10,7 @@ import SwiftUI
 
 var singleGrid = [GridItem()]
 
-var homeCards = CardSet(cards: [Card(mainText: ["Welcome to CardMate", "The controls are simple"], subText: ["Tap to flip", "Swipe right for the next card"]), Card(mainText: ["You can also swipe left to go back", "You can try it if you want"]), Card(mainText: ["Thats pretty much all the controls", "Enjoy!"], subText: ["You can create card sets below", ""])], title: "Home Set")
+var homeCards = CardSet(cards: [Card(mainText: ["Welcome to CardMate", "The controls are simple"], subText: ["Tap to flip", "Swipe right for the next card"]), Card(mainText: ["You can also swipe left to go back", "You can try it if you want"]), Card(mainText: ["Card Sets will appear below", "To remove one, you can hold down on it"], subText: ["", ""]),Card(mainText: ["Thats pretty much all the controls", "Enjoy!"], subText: ["You can create card sets below", ""])], title: "Home Set")
 
 private var cardCount = 0
 
