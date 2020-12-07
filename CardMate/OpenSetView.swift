@@ -14,6 +14,8 @@ struct OpenSetView: View {
 
     @State var mainText = ""
     @State var subText = ""
+    @State var defHidden:Bool = true
+    @State var btnText:String = "Show Definitions"
     var body: some View {
         HStack {
             VStack(alignment: .center) {
@@ -76,13 +78,17 @@ struct OpenSetView: View {
                 }
                 
                 Spacer()
-                    .frame(height: UIScreen.main.bounds.height * 0.1)
-                Text(String(cardCount+1) + "/" + String(passedCards.cards.count))
+                    .frame(height: UIScreen.main.bounds.height * 0.12)
                 HStack {
                     Button(action: {
-
+                        defHidden.toggle()
+                        if (defHidden){
+                            btnText = "Show Definitions"
+                        }else{
+                            btnText = "Hide Definitions"
+                        }
                     }) {
-                        Text("Show Definitions")
+                        Text(btnText)
                             .foregroundColor(.white)
                             .font(.headline)
                             .padding()
@@ -107,21 +113,42 @@ struct OpenSetView: View {
                     }
 
                 }
+                HStack {
+                    Text("Word")
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
 
-                LazyVGrid(columns: singleGrid, content: {
-                    ScrollView {
-                        VStack{
-                            ForEach(passedCards.cards, id: \.self) { card in
-                                CardListField(word: card.mainText[0], def: card.mainText[1])
-                            }
-                        }
-                    }
-                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 3, alignment: .center)
-                })
+                    Text("Definition")
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+
+                }
+                CardListTable(pCards: passedCards, dHidden: defHidden)
             }
             //Spacer()
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+    }
+}
+
+struct CardListTable: View {
+    var pCards:CardSet
+    var dHidden:Bool
+    var body: some View {
+        LazyVGrid(columns: singleGrid, content: {
+            ScrollView {
+                VStack{
+                    ForEach(pCards.cards, id: \.self) { card in
+                        if(dHidden){
+                            CardListField(word: card.mainText[0], def: "****")
+                        }else {
+                            CardListField(word: card.mainText[0], def: card.mainText[1])
+
+                        }
+                    }
+                }
+            }
+            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 3, alignment: .center)
+        })
+
     }
 }
 
