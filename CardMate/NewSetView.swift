@@ -19,12 +19,12 @@ struct NewSetView: View {
             Text("CardMate")
                 .fontWeight(.black)
                 .font(.system(size: 28))
-                .foregroundColor(.blue)
+                .foregroundColor(.purple)
 
             Text("Create New Set")
                 .fontWeight(.black)
                 .font(.system(size: 18))
-                .foregroundColor(.blue)
+                .foregroundColor(.purple)
                 
             
             HStack{
@@ -46,7 +46,7 @@ struct NewSetView: View {
                         .padding()
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                         .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
-                        .fill(Color.blue))
+                        .fill(Color.purple))
                         .padding(.bottom)
 
                 }
@@ -59,7 +59,7 @@ struct NewSetView: View {
                         .padding()
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                         .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
-                        .fill(Color.blue))
+                        .fill(Color.purple))
                         .padding(.bottom)
 
                 }

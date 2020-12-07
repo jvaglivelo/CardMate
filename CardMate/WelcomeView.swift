@@ -28,7 +28,7 @@ struct WelcomeView: View {
             
             Button(action: {
                 tapContinue()
-                defaults.setValue(false, forKey: "newUser")
+                defaults.set(false, forKey: "newUser")
             })
             {
                 Text("Continue")
@@ -37,7 +37,7 @@ struct WelcomeView: View {
                     .padding()
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                     .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
-                                    .fill(Color.blue))
+                                    .fill(Color.purple))
                     .padding(.bottom)
 
             }
@@ -45,7 +45,7 @@ struct WelcomeView: View {
 
         }).onAppear(){
             if (defaults.value(forKey: "newUser") == nil){
-                defaults.setValue(true, forKey: "newUser")
+                defaults.set(true, forKey: "newUser")
             }else if (defaults.bool(forKey: "newUser") == false){
                 tapContinue()
             }
@@ -61,7 +61,7 @@ struct WelcomeDetailView: View {
         HStack(alignment: .center, spacing: nil, content: {
             Image(systemName: image)
                 .font(.largeTitle)
-                .foregroundColor(.blue)
+                .foregroundColor(.purple)
                 .padding()
                 .accessibility(hidden: true)
             VStack(alignment: .center, spacing: nil, content: {
@@ -104,7 +104,7 @@ struct TitleView: View {
             Text("CardMate")
                 .fontWeight(.black)
                 .font(.system(size: 36))
-                .foregroundColor(.blue)
+                .foregroundColor(.purple)
         })
     }
 }
