@@ -78,10 +78,42 @@ struct OpenSetView: View {
                 Spacer()
                     .frame(height: UIScreen.main.bounds.height * 0.1)
                 Text(String(cardCount+1) + "/" + String(passedCards.cards.count))
-                
+                HStack {
+                    Button(action: {
+
+                    }) {
+                        Text("Show Definitions")
+                            .foregroundColor(.white)
+                            .font(.headline)
+                            .padding()
+                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+                            .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
+                            .fill(Color.purple))
+                            .padding(.bottom)
+
+                    }
+                    Button(action: {
+                        // What to perform
+                    }) {
+                        Text("Go Back")
+                            .foregroundColor(.white)
+                            .font(.headline)
+                            .padding()
+                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+                            .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
+                            .fill(Color.purple))
+                            .padding(.bottom)
+
+                    }
+
+                }
+
                 LazyVGrid(columns: singleGrid, content: {
                     ScrollView {
                         VStack{
+                            ForEach(passedCards.cards, id: \.self) { card in
+                                CardListField(word: card.mainText[0], def: card.mainText[1])
+                            }
                         }
                     }
                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 3, alignment: .center)
@@ -92,6 +124,22 @@ struct OpenSetView: View {
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
     }
 }
+
+struct CardListField: View {
+    var word:String
+    var def:String
+
+    var body: some View {
+        HStack{
+            Text(word)
+                .frame(width: UIScreen.main.bounds.width/2 - 10, height: UIScreen.main.bounds.height * 0.05, alignment: .center)
+            Text(def)
+                .frame(width: UIScreen.main.bounds.width/2 - 10, height: UIScreen.main.bounds.height * 0.1, alignment: .center)
+                
+        }
+    }
+}
+
 
 struct OpenSetView_Previews: PreviewProvider {
     static var previews: some View {
