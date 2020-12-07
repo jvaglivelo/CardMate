@@ -84,11 +84,11 @@ struct WelcomeDetailView: View {
 struct WelcomeContainerView: View {
     var body: some View {
         VStack(alignment: .leading) {
-            WelcomeDetailView(title: "Study", subTitle: "", image: "slider.horizontal.below.rectangle")
+            WelcomeDetailView(title: "Create", subTitle: "Create your own card sets with an unlimited amount of cards", image: "pencil")
 
-            WelcomeDetailView(title: "Learn", subTitle: "", image: "minus.slash.plus")
+            WelcomeDetailView(title: "Learn", subTitle: "Flip through any of your card sets by selecting it from the menu", image: "person.fill")
 
-            WelcomeDetailView(title: "Master", subTitle: "", image: "checkmark.square")
+            WelcomeDetailView(title: "Master", subTitle: "Use the Learn mode to master all the terms on your card set", image: "checkmark.square")
         }
         .padding(.horizontal)
     }
