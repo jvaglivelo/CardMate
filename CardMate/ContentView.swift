@@ -138,15 +138,20 @@ struct MainView: View {
                     ScrollView {
                         VStack{
                             ForEach(userSets.sets, id: \.self) { item in
-                                Button(action: {
-                                    tapOpenSet(passSet: item)
-                                }) {
-                                    Text(item.title)
-                                        .padding()
-                                        .font(.title)
-                                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+                                Text(item.title)
+                                    .padding()
+                                    .font(.title)
+                                    .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+                                    .onTapGesture {
+                                        tapOpenSet(passSet: item)
+                                    }
+                                    .onLongPressGesture {
+                                        if let index = userSets.sets.firstIndex(of: item) {
+                                            userSets.sets.remove(at: index)
+                                            defaults.setValue(encodeSets(set: userSets), forKey: "userSets")
+                                        }
 
-                                }
+                                    }
                             }
                         }
                     }
