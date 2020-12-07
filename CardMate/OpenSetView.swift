@@ -78,7 +78,7 @@ struct OpenSetView: View {
                 }
                 
                 Spacer()
-                    .frame(height: UIScreen.main.bounds.height * 0.12)
+                    .frame(height: UIScreen.main.bounds.height * 0.115)
                 HStack {
                     Button(action: {
                         defHidden.toggle()
@@ -125,7 +125,7 @@ struct OpenSetView: View {
             }
             //Spacer()
         }
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
     }
 }
 
