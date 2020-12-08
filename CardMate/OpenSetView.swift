@@ -98,7 +98,6 @@ struct OpenSetView: View {
                             .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                             .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
                             .fill(Color.purple))
-                            .padding(.bottom)
 
                     }
                     Button(action: {
@@ -111,7 +110,6 @@ struct OpenSetView: View {
                             .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                             .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
                             .fill(Color.purple))
-                            .padding(.bottom)
 
                     }
 

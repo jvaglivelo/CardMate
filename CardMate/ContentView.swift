@@ -111,6 +111,9 @@ struct MainView: View {
 
                 Spacer()
                     .frame(height: UIScreen.main.bounds.height * 0.1)
+                Text(" ")
+                    .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+
                 HStack {
                     Button(action: {
                         tapNewSet(set: userSets)
@@ -122,7 +125,6 @@ struct MainView: View {
                             .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                             .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
                             .fill(Color.purple))
-                            .padding(.bottom)
 
                     }
                     Button(action: {
@@ -135,7 +137,6 @@ struct MainView: View {
                             .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                             .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
                             .fill(Color.purple))
-                            .padding(.bottom)
 
                     }
 
