@@ -51,6 +51,8 @@ struct MainView: View {
     @State var mainText = homeCards.cards[cardCount].mainText[homeCards.cards[cardCount].side]
     @State var subText = homeCards.cards[cardCount].subText[homeCards.cards[cardCount].side]
     @State var userSets:CardSets = CardSets(sets: [CardSet]())
+    @State private var showAlert = false
+    @State private var deleteSet = CardSet(cards: [Card](), title: "")
     var body: some View {
         HStack {
             VStack(alignment: .center) {
@@ -157,12 +159,17 @@ struct MainView: View {
                                         tapOpenSet(passSet: item)
                                     }
                                     .onLongPressGesture {
-                                        if let index = userSets.sets.firstIndex(of: item) {
-                                            userSets.sets.remove(at: index)
-                                            defaults.setValue(encodeSets(set: userSets), forKey: "userSets")
-                                        }
-
+                                        deleteSet = item
+                                        showAlert = true
+                                    }.alert(isPresented: $showAlert) {
+                                        Alert(title: Text("Are you sure you want to delete this set?"), message: Text(deleteSet.title + " set will be gone forever..."), primaryButton: .destructive(Text("Delete")) {
+                                                if let index = userSets.sets.firstIndex(of: deleteSet) {
+                                                    userSets.sets.remove(at: index)
+                                                    defaults.setValue(encodeSets(set: userSets), forKey: "userSets")
+                                                }
+                                        }, secondaryButton: .cancel())
                                     }
+
                             }
                         }
                     }
