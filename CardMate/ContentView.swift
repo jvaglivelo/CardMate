@@ -9,14 +9,13 @@
 import SwiftUI
 
 var singleGrid = [GridItem()]
-
-var homeCards = CardSet(cards: [Card(mainText: ["Welcome to CardMate", "The controls are simple"], subText: ["Tap to flip", "Swipe right for the next card"]), Card(mainText: ["You can also swipe left to go back", "You can try it if you want"]), Card(mainText: ["Card Sets will appear below", "To remove one, you can hold down on it"], subText: ["", ""]),Card(mainText: ["Thats pretty much all the controls", "Enjoy!"], subText: ["You can create card sets below", ""])], title: "Home Set")
-
+private var homeCards = CardSet(cards: [Card(mainText: ["Welcome to CardMate", "The controls are simple"], subText: ["Tap to flip", "Swipe right for the next card"]), Card(mainText: ["You can also swipe left to go back", "You can try it if you want"]), Card(mainText: ["Card Sets will appear below", "To remove one, you can hold down on it"], subText: ["", ""]),Card(mainText: ["Thats pretty much all the controls", "Enjoy!"], subText: ["You can create card sets below", ""])], title: "Home Set")
 private var cardCount = 0
 
 
-
+//Detect direction card was swiped
 func detectDirection(value: DragGesture.Value) -> String {
+    //calculate whether left or right based off swipe locations
     if value.startLocation.x < value.location.x - 24 {
         return "left"
         }else if value.startLocation.x > value.location.x + 24 {
@@ -25,6 +24,7 @@ func detectDirection(value: DragGesture.Value) -> String {
     return "?"
   }
 
+//function to go to NewSetView
 func tapNewSet(set: CardSets) {
     if let window = UIApplication.shared.windows.first {
         window.rootViewController = UIHostingController(rootView: NewSetView(passedSets: set))
@@ -32,6 +32,7 @@ func tapNewSet(set: CardSets) {
     }
 }
 
+//function to go to OpenSetView
 func tapOpenSet(passSet: CardSet) {
     if let window = UIApplication.shared.windows.first {
         window.rootViewController = UIHostingController(rootView: OpenSetView(passedCards: passSet))
@@ -39,6 +40,7 @@ func tapOpenSet(passSet: CardSet) {
     }
 }
 
+//function to go to SettingsView
 func tapSettings() {
     if let window = UIApplication.shared.windows.first {
         window.rootViewController = UIHostingController(rootView: SettingsView())
@@ -48,14 +50,17 @@ func tapSettings() {
 
 
 struct MainView: View {
-    @State var mainText = homeCards.cards[cardCount].mainText[homeCards.cards[cardCount].side]
-    @State var subText = homeCards.cards[cardCount].subText[homeCards.cards[cardCount].side]
-    @State var userSets:CardSets = CardSets(sets: [CardSet]())
+    @State private var mainText = homeCards.cards[cardCount].mainText[homeCards.cards[cardCount].side]
+    @State private var subText = homeCards.cards[cardCount].subText[homeCards.cards[cardCount].side]
+    @State private var userSets:CardSets = CardSets(sets: [CardSet]())
     @State private var showAlert = false
     @State private var deleteSet = CardSet(cards: [Card](), title: "")
+    
     var body: some View {
         HStack {
             VStack(alignment: .center) {
+                
+                //Title
                 Text("CardMate")
                     .fontWeight(.black)
                     .font(.system(size: 28))
@@ -63,6 +68,8 @@ struct MainView: View {
                     .padding()
                 Spacer()
                     .frame(height: UIScreen.main.bounds.height * 0.1)
+                
+                //Card
                 LazyHGrid(rows: singleGrid, alignment: .center) {
                     VStack {
                         Text(mainText)
@@ -102,7 +109,6 @@ struct MainView: View {
                             }
                         })
                 .onTapGesture(count: 1){
-                    print("tapped")
                     if homeCards.cards[cardCount].side == 0 {
                         homeCards.cards[cardCount].side = 1
                         mainText = homeCards.cards[cardCount].mainText[homeCards.cards[cardCount].side]
@@ -118,7 +124,8 @@ struct MainView: View {
                     .frame(height: UIScreen.main.bounds.height * 0.1)
                 Text(" ")
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
-
+                
+                //Buttons
                 HStack {
                     Button(action: {
                         tapNewSet(set: userSets)
@@ -146,7 +153,8 @@ struct MainView: View {
                     }
 
                 }
-                //Spacer()
+                
+                //Set List
                 LazyVGrid(columns: singleGrid, content: {
                     ScrollView {
                         VStack{
@@ -181,7 +189,6 @@ struct MainView: View {
                     print(userSets.sets.count)
                 }
             }
-            //Spacer()
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
     }

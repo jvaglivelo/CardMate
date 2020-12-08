@@ -11,11 +11,14 @@ var newSet = CardSet(cards: [Card](), title: "")
 
 
 struct NewSetView: View {
-    @State var setName:String = ""
-    @State var cardNum = 1
+    @State private var setName:String = ""
+    @State private var cardNum = 1
     var passedSets:CardSets
+    
     var body: some View {
         VStack(alignment: .center) {
+            
+            //Title
             Text("CardMate")
                 .fontWeight(.black)
                 .font(.system(size: 28))
@@ -25,8 +28,8 @@ struct NewSetView: View {
                 .fontWeight(.black)
                 .font(.system(size: 18))
                 .foregroundColor(.purple)
-                
             
+            //Set Name
             HStack{
                 Text("Set Name:")
                     .frame(width: UIScreen.main.bounds.width/2, height: UIScreen.main.bounds.height * 0.05, alignment: .center)
@@ -35,6 +38,8 @@ struct NewSetView: View {
                 })
                     .frame(width: UIScreen.main.bounds.width/2, height: UIScreen.main.bounds.height * 0.05, alignment: .center)
             }
+            
+            //Buttons
             HStack {
                 Button(action: {
                     cardNum += 1
@@ -65,8 +70,9 @@ struct NewSetView: View {
                 }
 
             }
+            
+            //Word List
             HStack{
-                //Spacer()
                 LazyVGrid(columns: singleGrid, content: {
                     ScrollView {
                             ForEach(1...cardNum, id: \.self) { item in
@@ -85,10 +91,12 @@ struct NewSetView: View {
 }
 
 struct NewCardField: View {
-    @State var cardWord:String = ""
-    @State var cardDef:String = ""
+    @State private var cardWord:String = ""
+    @State private var cardDef:String = ""
 
     var body: some View {
+        
+        //Word / Definition Fields
         HStack{
             TextField("Enter word", text: $cardWord, onCommit: {
                 createCard(word: cardWord, def: cardDef)
@@ -112,12 +120,10 @@ func createCard(word: String, def: String){
 }
 
 func saveQuit(pSet: CardSets){
-    print("called")
     if !(newSet.cards.isEmpty){
         if !(newSet.title.isEmpty){
             var userSet = pSet
             userSet.sets.append(newSet)
-            print("success")
             defaults.setValue(encodeSets(set: userSet), forKey: "userSets")
             if let window = UIApplication.shared.windows.first {
                 window.rootViewController = UIHostingController(rootView: MainView())

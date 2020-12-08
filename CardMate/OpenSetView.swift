@@ -11,21 +11,26 @@ private var cardCount = 0
 
 struct OpenSetView: View {
     @State var passedCards:CardSet
-
-    @State var mainText = ""
-    @State var subText = ""
-    @State var defHidden:Bool = true
-    @State var btnText:String = "Show"
+    @State private var mainText = ""
+    @State private var subText = ""
+    @State private var defHidden:Bool = true
+    @State private var btnText:String = "Show"
+    
     var body: some View {
         HStack {
             VStack(alignment: .center) {
+                
+                //Title
                 Text("CardMate")
                     .fontWeight(.black)
                     .font(.system(size: 28))
                     .foregroundColor(.purple)
                     .padding()
+                
                 Spacer()
                     .frame(height: UIScreen.main.bounds.height * 0.1)
+                
+                //Card
                 LazyHGrid(rows: singleGrid, alignment: .center) {
                     VStack {
                         Text(mainText)
@@ -47,7 +52,6 @@ struct OpenSetView: View {
                     .onEnded { value in
                     let direction = detectDirection(value: value)
                     if direction == "left" {
-                        print("left")
                         if (cardCount != 0){
                         cardCount -= 1
                         passedCards.cards[cardCount].side = 0
@@ -55,7 +59,6 @@ struct OpenSetView: View {
                         subText = passedCards.cards[cardCount].subText[passedCards.cards[cardCount].side]
                         }
                     }else if direction == "right" {
-                        print("right")
                         if (passedCards.cards.count > cardCount+1){
                             cardCount += 1
                             passedCards.cards[cardCount].side = 0
@@ -66,7 +69,6 @@ struct OpenSetView: View {
                     }
                 })
                 .onTapGesture(count: 1){
-                    print("tapped")
                     if passedCards.cards[cardCount].side == 0 {
                         passedCards.cards[cardCount].side = 1
                         mainText = passedCards.cards[cardCount].mainText[passedCards.cards[cardCount].side]
@@ -80,9 +82,12 @@ struct OpenSetView: View {
                 
                 Spacer()
                     .frame(height: UIScreen.main.bounds.height * 0.115)
+                
+                //Card Count Text
                 Text(String(cardCount+1) + "/" + String(passedCards.cards.count))
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
-
+                
+                //Buttons
                 HStack {
                     Button(action: {
                         defHidden.toggle()
@@ -126,19 +131,20 @@ struct OpenSetView: View {
                             .fill(Color.purple))
 
                     }
-
                 }
+                
+                //Header
                 HStack {
                     Text("Word")
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
 
                     Text("Definition")
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
-
                 }
+                
+                //Word List
                 CardListTable(pCards: passedCards, dHidden: defHidden)
             }
-            //Spacer()
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
     }
@@ -148,6 +154,8 @@ struct CardListTable: View {
     var pCards:CardSet
     var dHidden:Bool
     var body: some View {
+        
+        //Table
         LazyVGrid(columns: singleGrid, content: {
             ScrollView {
                 VStack{

@@ -11,11 +11,15 @@ struct SettingsView: View {
     var body: some View {
         HStack {
             VStack(alignment: .center) {
+                
+                //Title
                 Text("CardMate")
                     .fontWeight(.black)
                     .font(.system(size: 28))
                     .foregroundColor(.purple)
                     .padding()
+                
+                //Erase All Button
                 VStack{
                     Text("Erase All Sets")
                         .frame(width: UIScreen.main.bounds.width/2, height: UIScreen.main.bounds.height * 0.05, alignment: .center)
@@ -35,6 +39,8 @@ struct SettingsView: View {
                     }
                 }
                 Spacer()
+                
+                //Return Button
                 Button(action: {
                     tapGoBack()
                 }) {
