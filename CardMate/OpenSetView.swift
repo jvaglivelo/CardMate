@@ -15,7 +15,7 @@ struct OpenSetView: View {
     @State var mainText = ""
     @State var subText = ""
     @State var defHidden:Bool = true
-    @State var btnText:String = "Show Definitions"
+    @State var btnText:String = "Show"
     var body: some View {
         HStack {
             VStack(alignment: .center) {
@@ -87,9 +87,9 @@ struct OpenSetView: View {
                     Button(action: {
                         defHidden.toggle()
                         if (defHidden){
-                            btnText = "Show Definitions"
+                            btnText = "Show"
                         }else{
-                            btnText = "Hide Definitions"
+                            btnText = "Hide"
                         }
                     }) {
                         Text(btnText)
@@ -102,9 +102,22 @@ struct OpenSetView: View {
 
                     }
                     Button(action: {
+
+                    }) {
+                        Text("Learn")
+                            .foregroundColor(.white)
+                            .font(.headline)
+                            .padding()
+                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+                            .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
+                            .fill(Color.purple))
+
+                    }
+
+                    Button(action: {
                         tapGoBack()
                     }) {
-                        Text("Go Back")
+                        Text("Back")
                             .foregroundColor(.white)
                             .font(.headline)
                             .padding()
