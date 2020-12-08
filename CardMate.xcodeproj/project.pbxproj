@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A87CA88257FE40D00E5231B /* LearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87CA87257FE40D00E5231B /* LearnView.swift */; };
 		4AA5D1F3257EC7A000D69F8F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA5D1F2257EC7A000D69F8F /* SettingsView.swift */; };
 		4AA87BEB257D40D500027348 /* CardMateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA87BEA257D40D500027348 /* CardMateApp.swift */; };
 		4AA87BED257D40D500027348 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA87BEC257D40D500027348 /* ContentView.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A87CA87257FE40D00E5231B /* LearnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnView.swift; sourceTree = "<group>"; };
 		4AA5D1F2257EC7A000D69F8F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		4AA87BE7257D40D500027348 /* CardMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AA87BEA257D40D500027348 /* CardMateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardMateApp.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				4AA87BEA257D40D500027348 /* CardMateApp.swift */,
 				4AA87BEC257D40D500027348 /* ContentView.swift */,
 				4ABD28A2257DD89600915D2B /* OpenSetView.swift */,
+				4A87CA87257FE40D00E5231B /* LearnView.swift */,
 				4AA87BFD257D645C00027348 /* Cards.swift */,
 				4AA87BFA257D463300027348 /* WelcomeView.swift */,
 				4AA87C00257D90E400027348 /* NewSetView.swift */,
@@ -160,6 +163,7 @@
 				4AA87C01257D90E400027348 /* NewSetView.swift in Sources */,
 				4AA87BFE257D645C00027348 /* Cards.swift in Sources */,
 				4ABD28A3257DD89600915D2B /* OpenSetView.swift in Sources */,
+				4A87CA88257FE40D00E5231B /* LearnView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
