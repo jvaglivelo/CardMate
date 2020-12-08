@@ -107,7 +107,7 @@ struct OpenSetView: View {
 
                     }
                     Button(action: {
-
+                        tapLearnView(pSet: passedCards)
                     }) {
                         Text("Learn")
                             .foregroundColor(.white)
@@ -197,6 +197,13 @@ func tapGoBack() {
     }
 }
 
+//function to go to OpenSetView
+func tapLearnView(pSet: CardSet) {
+    if let window = UIApplication.shared.windows.first {
+        window.rootViewController = UIHostingController(rootView: LearnView(passedCards: pSet))
+        window.makeKeyAndVisible()
+    }
+}
 
 struct OpenSetView_Previews: PreviewProvider {
     static var previews: some View {
