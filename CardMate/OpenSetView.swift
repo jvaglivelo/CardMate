@@ -79,6 +79,9 @@ struct OpenSetView: View {
                 
                 Spacer()
                     .frame(height: UIScreen.main.bounds.height * 0.115)
+                Text(String(cardCount+1) + "/" + String(passedCards.cards.count))
+                    .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+
                 HStack {
                     Button(action: {
                         defHidden.toggle()
