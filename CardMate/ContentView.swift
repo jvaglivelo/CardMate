@@ -68,7 +68,10 @@ struct MainView: View {
                             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/6, alignment: .center)
                             .lineLimit(3)
                             .multilineTextAlignment(.center)
+                            .foregroundColor(.black)
                         Text(subText)
+                            .foregroundColor(.black)
+
                     }
                     .frame(width: UIScreen.main.bounds.size.width / 1.05, height: UIScreen.main.bounds.height/3, alignment: .center)
                     .background(Color(UIColor(red: 0.90, green: 0.90, blue: 0.92, alpha: 1.00)))

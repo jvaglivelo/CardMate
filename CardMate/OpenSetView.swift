@@ -33,7 +33,8 @@ struct OpenSetView: View {
                             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height/6, alignment: .center)
                             .lineLimit(3)
                             .multilineTextAlignment(.center)
-                        //Text(subText)
+                            .foregroundColor(.black)
+
                     }.onAppear(){
                         mainText = passedCards.cards[cardCount].mainText[passedCards.cards[cardCount].side]
                         subText = passedCards.cards[cardCount].subText[passedCards.cards[cardCount].side]
